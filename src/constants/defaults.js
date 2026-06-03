@@ -1,0 +1,41 @@
+export const EMERGENCY_KEYS = {
+  super_admin: 'sorRy#13',
+  manager: 'manage@mm',
+  salesperson: 'sales@mm'
+};
+
+export const DEFAULT_SETTINGS = {
+  id: 1,
+  shop_name: 'Mumtaz Medical',
+  address: 'Add shop address',
+  phone: '03xx-xxxxxxx',
+  logo: '',
+  currency: 'Rs.',
+  low_stock_default: 10,
+  near_end_default: 5,
+  pending_min_amount: 100,
+  require_phone_for_vip: true,
+  loyalty_enabled: true,
+  loyalty_points_rate: 1,
+  loyalty_redeem_rate: 1,
+  loyalty_silver_at: 100,
+  loyalty_gold_at: 500,
+  loyalty_platinum_at: 2000,
+  global_discount_enabled: false,
+  global_discount_type: 'flat',
+  global_discount_percent: 0,
+  max_discount_percent: 100,
+  discount_mode: 'percent',
+  cart_item_limit: 0,
+  allow_negative_stock: false,
+  receipt_format: 'thermal',
+  tax_enabled: false,
+  tax_percent: 0,
+  auto_block_overdue: false,
+  bill_sequence: 0,
+  super_key_1: EMERGENCY_KEYS.super_admin,
+  super_key_2: EMERGENCY_KEYS.manager,
+  super_key_3: EMERGENCY_KEYS.salesperson,
+  sync_enabled: false,
+  updated_at: new Date().toISOString()
+};
