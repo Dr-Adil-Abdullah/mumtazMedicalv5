@@ -27,7 +27,7 @@ export default function App() {
   const user = useAuthStore((state) => state.user);
   const currentStaff = useLiveQuery(
     () => {
-      if (!user || user.isEmergency || !user.id) return null;
+      if (!user || user.isEmergency || !user.id || typeof user.id !== 'string') return null;
       return db.staff.get(user.id);
     },
     [user?.id, user?.isEmergency]
