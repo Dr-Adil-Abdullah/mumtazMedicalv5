@@ -50,37 +50,8 @@ export default function App() {
     refreshQueueCount();
   }, [settings?.id, settings?.sync_enabled]);
 
-  useEffect(() => {
-    if (!settings) return undefined;
-
-    let cancelled = false;
-
-    async function setupSync() {
-      try {
-        initializeSyncState(Boolean(settings.sync_enabled));
-
-        if (settings.sync_enabled) {
-          await startRealtimeSync();
-          if (!cancelled && navigator.onLine) {
-            await runManualSync({ actor: user ?? { name: 'System' } }).catch(() => null);
-          }
-        } else {
-          await stopRealtimeSync();
-        }
-      } catch {
-        // sync foundation should fail gracefully until env is configured
-      }
-    }
-
-    setupSync();
-
-    return () => {
-      cancelled = true;
-      if (!settings.sync_enabled) {
-        stopRealtimeSync().catch(() => null);
-      }
-    };
-  }, [settings?.sync_enabled, user?.id]);
+  // Supabase sync is disabled for now to prevent errors
+  // useEffect for sync has been temporarily disabled
 
   if (!ready) {
     return <LoadingScreen />;

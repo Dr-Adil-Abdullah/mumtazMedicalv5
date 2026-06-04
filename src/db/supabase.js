@@ -14,20 +14,6 @@ export function getSupabaseConfigInfo() {
 }
 
 export function getSupabaseClient() {
-  const { url, anonKey, configured } = getSupabaseConfigInfo();
-
-  if (!configured) {
-    return null;
-  }
-
-  if (!client) {
-    client = createClient(url, anonKey, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false
-      }
-    });
-  }
-
-  return client;
+  // Supabase sync is currently disabled to avoid IDBKeyRange errors
+  return null;
 }
