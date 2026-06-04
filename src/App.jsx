@@ -23,9 +23,13 @@ function LoadingScreen() {
 export default function App() {
   const [ready, setReady] = useState(false);
   const settings = useLiveQuery(() => db.settings.get(1), []);
+  const staffCount = useLiveQuery(() => db.staff.count(), []);
   const user = useAuthStore((state) => state.user);
   const currentStaff = useLiveQuery(
-    () => (user && !user.isEmergency ? db.staff.get(user.id) : null),
+    () => {
+      if (!user || user.isEmergency || !user.id) return null;
+      return db.staff.get(user.id);
+    },
     [user?.id, user?.isEmergency]
   );
 
@@ -82,7 +86,7 @@ export default function App() {
     return <LoadingScreen />;
   }
 
-  if (!settings) {
+  if (!settings || staffCount === 0) {
     return (
       <Suspense fallback={<LoadingScreen />}>
         <FirstLaunch onCreate={seedInitialData} />
